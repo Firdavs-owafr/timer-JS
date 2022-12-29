@@ -1,0 +1,104 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500;900&display=swap');
+*{
+    box-sizing: border-box;
+}
+body{
+    width: 100%;
+    margin: 0 auto;
+    height: 100vh;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Roboto';
+    overflow: hidden;
+    background: #3E1E68;
+}
+.background {
+    width: 100%;
+    height: max-content;
+    position: relative;
+  }
+  
+  $particleSize: 20vmin;
+  $animationDuration: 6s;
+  $amount: 20;
+  .background span {
+    width: 10%;
+    height: $particleSize;
+    border-radius: $particleSize;
+    backface-visibility: hidden;
+    position: absolute;
+    animation-name: move;
+    animation-duration: $animationDuration;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    $colors: (
+      #583C87,
+      #E45A84,
+      #FFACAC
+    );
+    @for $i from 1 through $amount {
+      &:nth-child(#{$i}) {
+        color: nth($colors, random(length($colors)));
+        top: random(100) * 1%;
+        left: random(100) * 1%;
+        animation-duration: (random($animationDuration * 10) / 10) * 1s + 10s;
+        animation-delay: random(($animationDuration + 10s) * 10) / 10 * -1s;
+        transform-origin: (random(50) - 25) * 1vw (random(50) - 25) * 1vh;
+        $blurRadius: (random() + 0.5) * $particleSize * 0.5;
+        $x: if(random() > 0.5, -1, 1);
+        box-shadow: ($particleSize * 2 * $x) 0 $blurRadius currentColor;
+      }
+    }
+  }
+  
+  @keyframes move {
+    100% {
+      transform: translate3d(0, 0, 1px) rotate(360deg);
+    }
+  }
+.wrapper{
+    width: 1220px;
+    height: max-content;
+    margin: 0 auto;
+    padding: 20px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    .box__header{
+        width: 80%;
+        height: 300px;
+        background-color: gainsboro;
+        border-radius: 10px;
+        box-shadow: 0 3px 10px 0;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        .box{
+            width: 200px;
+            height: 200px;
+            display: flex;
+            flex-direction: column;
+            // background-color: ;
+            align-items: center;
+            // justify-content: center;
+            margin: 0;
+            text-align: center;
+            .numbers__nol{
+                font-size: 84px;
+                margin-bottom: 0;
+                font-weight: 900;
+            }
+            .days__day{
+                font-weight: 500;
+                font-size: 32px;
+                
+            }
+            // flex-direction: column;
+        }
+    }
+}
+
